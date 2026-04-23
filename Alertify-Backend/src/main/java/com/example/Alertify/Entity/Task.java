@@ -28,6 +28,7 @@ public class Task {
     @Enumerated(EnumType.STRING)
     private Priority priority;
 
+    @Column(columnDefinition = "DATETIME")
     private LocalDateTime alertTime;
 
     @Column(nullable = false, columnDefinition = "BOOLEAN DEFAULT FALSE")
