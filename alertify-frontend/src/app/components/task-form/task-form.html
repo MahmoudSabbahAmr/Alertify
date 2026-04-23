@@ -1,0 +1,21 @@
+<div class="form-container">
+  <h2>{{ task.id ? 'Edit Task' : 'New Task' }}</h2>
+
+  <input [(ngModel)]="task.title" placeholder="Title" />
+  <textarea [(ngModel)]="task.annotation" placeholder="Description"></textarea>
+
+  <select [(ngModel)]="task.priority">
+    <option value="HIGH">High</option>
+    <option value="MEDIUM">Medium</option>
+    <option value="LOW">Low</option>
+  </select>
+
+  <input type="datetime-local" [(ngModel)]="task.alertTime" />
+
+  <label>
+    <input type="checkbox" [(ngModel)]="task.done" /> Done
+  </label>
+
+  <button (click)="save()">{{ task.id ? 'Update' : 'Create' }}</button>
+  <button (click)="resetForm()">Clear</button>
+</div>

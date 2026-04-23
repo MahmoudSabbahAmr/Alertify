@@ -1,0 +1,15 @@
+<div class="auth-container">
+  <div class="auth-box">
+    <h2>📝 إنشاء حساب</h2>
+    <p class="subtitle">انضم لـ Alertify دلوقتي</p>
+
+    <input [(ngModel)]="name" type="text" placeholder="الاسم" />
+    <input [(ngModel)]="email" type="email" placeholder="الإيميل" />
+    <input [(ngModel)]="password" type="password" placeholder="كلمة المرور" />
+
+    <p class="error" *ngIf="error">{{ error }}</p>
+
+    <button (click)="register()">إنشاء حساب</button>
+    <button class="secondary" (click)="goToLogin()">عندك حساب؟ سجّل دخول</button>
+  </div>
+</div>

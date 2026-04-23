@@ -1,0 +1,14 @@
+<div class="auth-container">
+  <div class="auth-box">
+    <h2>🔐 تسجيل الدخول</h2>
+    <p class="subtitle">أهلاً بك في Alertify</p>
+
+    <input [(ngModel)]="email" type="email" placeholder="الإيميل" />
+    <input [(ngModel)]="password" type="password" placeholder="كلمة المرور" />
+
+    <p class="error" *ngIf="error">{{ error }}</p>
+
+    <button (click)="login()">دخول</button>
+    <button class="secondary" (click)="goToRegister()">مش عندك حساب؟ سجّل</button>
+  </div>
+</div>

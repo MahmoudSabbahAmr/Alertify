@@ -1,0 +1,35 @@
+<div class="container">
+  <div class="header">
+    <h1>📋 Alertify Tasks</h1>
+    <div class="user-info">
+      <span>👋 أهلاً، {{ userName }}</span>
+      <button class="logout-btn" (click)="logout()">خروج</button>
+    </div>
+  </div>
+
+  <app-task-form
+    [taskToEdit]="selectedTask"
+    [userEmail]="authService.getEmail()"
+    (taskSaved)="onTaskSaved()">
+  </app-task-form>
+
+  <div class="task-grid">
+    @for (task of tasks; track task.id) {
+      <div class="task-card">
+        <div class="task-header">
+          <h3>{{ task.title }}</h3>
+          <span class="priority" [class]="task.priority.toLowerCase()">
+            {{ task.priority }}
+          </span>
+        </div>
+        <p>{{ task.annotation }}</p>
+        <p class="alert-time">⏰ {{ task.alertTime | date:'medium' }}</p>
+        <p class="status">{{ task.done ? '✅ Done' : '🕐 Pending' }}</p>
+        <div class="actions">
+          <button class="edit-btn" (click)="editTask(task)">Edit</button>
+          <button class="delete-btn" (click)="deleteTask(task.id!)">Delete</button>
+        </div>
+      </div>
+    }
+  </div>
+</div>
