@@ -20,7 +20,9 @@ public class ReminderScheduler {
 
     @Scheduled(fixedRate = 60000)
     public void checkAndSendReminders() {
-        LocalDateTime now = LocalDateTime.now();
+
+        LocalDateTime now = LocalDateTime.now(java.time.ZoneId.of("Africa/Cairo"));
+
         List<Task> tasks = taskRepository.findByIsDoneFalseAndAlertTimeBefore(now);
 
         for (Task task : tasks) {
