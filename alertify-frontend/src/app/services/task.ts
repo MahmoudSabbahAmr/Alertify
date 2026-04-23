@@ -7,7 +7,7 @@ export interface Task {
   title: string;
   annotation: string;
   priority: 'HIGH' | 'MEDIUM' | 'LOW';
-  alertTime: string;
+  alertTime: string | null;
   done: boolean;
   userEmail?: string | null;
 }

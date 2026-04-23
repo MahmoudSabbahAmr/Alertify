@@ -34,7 +34,11 @@ export class TaskFormComponent implements OnChanges {
   }
 
   save() {
-    const taskToSend = { ...this.task, userEmail: this.userEmail };
+    const taskToSend = {
+      ...this.task,
+      userEmail: this.userEmail,
+      alertTime: this.task.alertTime ? new Date(this.task.alertTime).toISOString().slice(0, 19) : null
+    };
     if (this.task.id) {
       this.taskService.updateTask(this.task.id, taskToSend).subscribe(() => {
         this.taskSaved.emit();
