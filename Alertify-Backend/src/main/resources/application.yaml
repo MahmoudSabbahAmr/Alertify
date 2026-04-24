@@ -17,12 +17,13 @@ spring:
           time_zone: Africa/Cairo
   mail:
     host: smtp.gmail.com
-    port: 587
+    port: 465
     username: msabbahamr@gmail.com
     password: dnsa ctno pbfb vwmr
     properties:
       mail:
         smtp:
           auth: true
-          starttls:
+          ssl:
             enable: true
+    protocol: smtps
