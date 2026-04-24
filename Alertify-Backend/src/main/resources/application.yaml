@@ -15,18 +15,7 @@ spring:
       hibernate:
         jdbc:
           time_zone: Africa/Cairo
-  mail:
-    host: smtp.gmail.com
-    port: 587
-    username: msabbahamr@gmail.com
-    password: wwqw uqpo sbnl unvb
 
-    properties:
-      mail:
-        smtp:
-          auth: true
-          starttls:
-            enable: true
-            required: true
-          ssl:
-            trust: smtp.gmail.com
+resend:
+  api:
+    key: re_M8jusHvM_9M7zqNjPWPj7y9Wa9FhvupTQ

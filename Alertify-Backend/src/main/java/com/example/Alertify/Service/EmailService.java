@@ -1,29 +1,36 @@
 package com.example.Alertify.Service;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.SimpleMailMessage;
-import org.springframework.mail.javamail.JavaMailSender;
+import com.resend.Resend;
+import com.resend.core.exception.ResendException;
+import com.resend.services.emails.model.CreateEmailOptions;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 @Service
 public class EmailService {
 
-    @Autowired
-    private JavaMailSender mailSender;
+    @Value("${resend.api.key}")
+    private String apiKey;
 
     public void sendReminderEmail(String toEmail, String taskTitle, String taskAnnotation) {
-        SimpleMailMessage message = new SimpleMailMessage();
-        message.setTo(toEmail);
-        message.setSubject("⏰ Alertify Reminder: " + taskTitle);
-        message.setText(
-                "مرحباً!\n\n" +
-                        "هذا تذكير بمهمتك:\n\n" +
-                        "📌 العنوان: " + taskTitle + "\n" +
-                        "📝 الوصف: " + taskAnnotation + "\n\n" +
-                        "لا تنسى إنجاز مهمتك في وقتها! 💪\n\n" +
-                        "Alertify Team"
-        );
-        mailSender.send(message);
-    }
+        Resend resend = new Resend(apiKey);
 
+        CreateEmailOptions params = CreateEmailOptions.builder()
+                .from("Alertify <onboarding@resend.dev>")
+                .to(toEmail)
+                .subject("⏰ Alertify Reminder: " + taskTitle)
+                .html("<h2>مرحباً!</h2>" +
+                        "<p>هذا تذكير بمهمتك:</p>" +
+                        "<p>📌 <b>العنوان:</b> " + taskTitle + "</p>" +
+                        "<p>📝 <b>الوصف:</b> " + taskAnnotation + "</p>" +
+                        "<p>لا تنسى إنجاز مهمتك في وقتها! 💪</p>" +
+                        "<p>Alertify Team</p>")
+                .build();
+
+        try {
+            resend.emails().send(params);
+        } catch (ResendException e) {
+            System.out.println("Error sending email: " + e.getMessage());
+        }
+    }
 }
