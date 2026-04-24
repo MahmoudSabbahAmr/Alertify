@@ -16,6 +16,15 @@ spring:
         jdbc:
           time_zone: Africa/Cairo
 
-resend:
-  api:
-    key: re_M8jusHvM_9M7zqNjPWPj7y9Wa9FhvupTQ
+mail:
+  host: smtp.gmail.com
+  port: 465
+  username: msabbahamr@gmail.com
+  password: wwqw uqpo sbnl unvb
+  properties:
+    mail:
+      smtp:
+        auth: true
+        ssl:
+          enable: true
+  protocol: smtps
