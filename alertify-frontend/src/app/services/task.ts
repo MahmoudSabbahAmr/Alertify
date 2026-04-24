@@ -27,6 +27,7 @@ export class TaskService {
   }
 
   createTask(task: Task): Observable<Task> {
+    console.log("TASK DATA 👉", task);  // 👈 هنا بالظبط
     return this.http.post<Task>(`${this.apiUrl}/createTask`, task);
   }
 

@@ -10,4 +10,6 @@ public interface TaskRepository extends JpaRepository<Task, Long> {
 
     List<Task> findByIsDoneFalseAndAlertTimeBefore(LocalDateTime time);
     List<Task> findByUserEmail(String email);
+
+    List<Task> findByIsDoneFalse();
 }

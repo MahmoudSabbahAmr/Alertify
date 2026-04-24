@@ -22,8 +22,10 @@ public class ReminderScheduler {
     public void checkAndSendReminders() {
 
         LocalDateTime now = LocalDateTime.now();
-        List<Task> tasks = taskRepository.findByIsDoneFalseAndAlertTimeBefore(now);
+        List<Task> tasks = taskRepository.findByIsDoneFalse();
 
+        System.out.println("⏰ Now: " + now);
+        System.out.println("📊 Tasks found: " + tasks.size());
         for (Task task : tasks) {
             String email = task.getUser() != null
                     ? task.getUser().getEmail()
